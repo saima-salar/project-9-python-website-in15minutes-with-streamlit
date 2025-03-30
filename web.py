@@ -31,33 +31,31 @@ df = pd.DataFrame(students)
 # Center-align subheader
 st.markdown("<h2 style='text-align: center;'>Generated Students Data</h2>", unsafe_allow_html=True)
 
-# Center-align the dataframe using custom CSS
+# Custom CSS to center table column values
 st.markdown(
     """
     <style>
-        .centered {
-            display: flex;
-            justify-content: center;
+        /* Center-align all column values */
+        table td, table th {
+            text-align: center !important;
         }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Display the DataFrame in the center
-st.markdown('<div class="centered">', unsafe_allow_html=True)
-st.dataframe(df)
-st.markdown('</div>', unsafe_allow_html=True)
+# Display the DataFrame with centered column values
+st.dataframe(df.style.set_properties(**{'text-align': 'center'}))
 
 # Convert dataframe to CSV format
 csv_file = df.to_csv(index=False).encode('utf-8')
 
 # Center-align the download button
-st.markdown('<div class="centered">', unsafe_allow_html=True)
+st.markdown("<div style='display: flex; justify-content: center;'>", unsafe_allow_html=True)
 st.download_button("Download CSV File", csv_file, "students.csv", "text/csv", key="download_csv")
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Center-align success message
-st.markdown('<div class="centered">', unsafe_allow_html=True)
+st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
 st.success("Students Record Generated Successfully!")
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)

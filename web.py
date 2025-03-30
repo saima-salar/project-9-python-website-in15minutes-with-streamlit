@@ -3,7 +3,7 @@ import pandas as pd
 import random
 
 # Set Streamlit page configuration
-st.set_page_config(page_title="Student Data Generator", layout="wide")
+st.set_page_config(page_title="Project 9:Student Data Generator", layout="wide")
 
 # Center-align the title
 st.markdown("<h1 style='text-align: center;'>Student CSV File Generator</h1>", unsafe_allow_html=True)

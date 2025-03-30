@@ -1,5 +1,3 @@
-# Project 9: Build a Python Website in 15 Minutes With Streamlit
-
 import streamlit as st
 import pandas as pd
 import random
@@ -28,24 +26,19 @@ for i in range(1, 11):  # Generate 10 students (1-10)
 # Convert student records into a DataFrame
 df = pd.DataFrame(students)
 
+# Apply center alignment to all columns using Pandas Styler
+styled_df = df.style.set_table_styles(
+    [
+        {"selector": "th", "props": [("text-align", "center")]},  # Center column headers
+        {"selector": "td", "props": [("text-align", "center")]}   # Center column values
+    ]
+)
+
 # Center-align subheader
 st.markdown("<h2 style='text-align: center;'>Generated Students Data</h2>", unsafe_allow_html=True)
 
-# Custom CSS to center table column values
-st.markdown(
-    """
-    <style>
-        /* Center-align all column values */
-        table td, table th {
-            text-align: center !important;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Display the DataFrame with centered column values
-st.dataframe(df.style.set_properties(**{'text-align': 'center'}))
+st.write(styled_df)
 
 # Convert dataframe to CSV format
 csv_file = df.to_csv(index=False).encode('utf-8')
